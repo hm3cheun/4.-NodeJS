@@ -37,6 +37,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.all('*', function(req, res, next){
+    console.log('req start: ',req.secure, req.hostname, req.url, app.get('port'));
+  if (req.secure) {
+    return next();
+  };
+
+ res.redirect('https://'+req.hostname+':'+app.get('secPort')+req.url);
+});
 // passport config
 var User = require('./models/user');
 app.use(passport.initialize());
