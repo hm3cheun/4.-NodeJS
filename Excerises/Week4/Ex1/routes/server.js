@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var dishRouter = require('./dishrouter');
 var leaderRouter = require('./leaderRouter');
 var promoRouter = require('./promoRouter');
+var favoriteRouter = require('./favoriteRouter');
 var hostname = 'localhost';
 var port = 3000;
 var app = express();
@@ -14,6 +15,7 @@ app.use(morgan('dev'));  //use morgan for all apps
 app.use('/dishes', dishRouter);
 app.use('/leadership', leaderRouter);
 app.use('/promotions', promoRouter);
+app.use('/favorites', favoriteRouter);
 
 app.all('/', function(req,res,next) {
       res.writeHead(200, { 'Content-Type': 'text/plain' });
